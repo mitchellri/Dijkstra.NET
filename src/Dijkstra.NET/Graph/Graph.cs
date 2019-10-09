@@ -69,6 +69,23 @@ namespace Dijkstra.NET.Graph
             return true;
         }
 
+        /// <summary>
+        /// Disconnect node to from node from
+        /// </summary>
+        /// <param name="from">First node</param>
+        /// <param name="to">Second node</param>
+        /// <returns>Returns true if nodes disconnected</returns>
+        public bool Disconnect(uint from, uint to)
+        {
+            if (!_nodes.ContainsKey(from) || !_nodes.ContainsKey(to))
+                return false;
+
+            Node<T,TEdgeCustom> nodeFrom = _nodes[from];
+            Node<T, TEdgeCustom> nodeTo = _nodes[to];
+
+            return nodeTo.RemoveParent(nodeFrom) & nodeFrom.RemoveEdge(to);
+        }
+
         public IEnumerator<INode<T, TEdgeCustom>> GetEnumerator() => _nodes.Select(x => x.Value).GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

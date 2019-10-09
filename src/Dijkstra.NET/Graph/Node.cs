@@ -94,9 +94,28 @@ namespace Dijkstra.NET.Graph
             EdgesCount++;
         }
 
+        internal bool RemoveEdge(in uint to)
+        {
+            for (int i = 0; i < EdgesCount; i++)
+            {
+                if (_edges[i].Node.Key == to)
+                {
+                    EdgesCount--;
+                    _edges[i] = _edges[EdgesCount];
+                    return true;
+                }
+            }
+            return true;
+        }
+
         internal void AddParent(Node<T, TEdgeCustom> parent)
         {
             _parents.Add(parent);
+        }
+
+        internal bool RemoveParent(Node<T, TEdgeCustom> parent)
+        {
+            return _parents.Remove(parent);
         }
 
         public override int GetHashCode()
