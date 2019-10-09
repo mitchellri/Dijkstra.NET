@@ -32,7 +32,7 @@ namespace Dijkstra.NET.Graph
 
         public uint Key { get; }
 
-        public T Item { get; }
+        public T Item { get; set; }
 
         public int EdgesCount { get; internal set; }
 

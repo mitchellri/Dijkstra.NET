@@ -10,6 +10,6 @@ namespace Dijkstra.NET.Graph
 
     public interface INode<T, TEdgeCustom> : INode, IEnumerable<Edge<T, TEdgeCustom>> where TEdgeCustom : IEquatable<TEdgeCustom>
     {
-        T Item { get; }
+        T Item { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Dijkstra.NET.Graph
 {
-    public readonly struct Edge<T, TCustom>: IEquatable<Edge<T, TCustom>> where TCustom: IEquatable<TCustom>
+    public struct Edge<T, TCustom>: IEquatable<Edge<T, TCustom>> where TCustom: IEquatable<TCustom>
     {
         public Edge(INode<T, TCustom> node, int cost, TCustom custom)
         {
@@ -14,7 +14,7 @@ namespace Dijkstra.NET.Graph
 
         public INode<T, TCustom> Node { get; }
 
-        public int Cost { get; }
+        public int Cost { get; set; }
 
         public TCustom Item { get; }
 
@@ -42,5 +42,9 @@ namespace Dijkstra.NET.Graph
             return Equals(other.Value);
         }
 
+        public void SetCost(int cost)
+        {
+            Cost = cost;
+        }
     }
 }
